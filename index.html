@@ -4,7 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fresco d.o.o. – Svježe i spremno za upotrebu</title>
+  <meta name="description" content="Fresco d.o.o. – svježi i termički obrađeni prehrambeni proizvodi. Savica I. 139, Zagreb." />
+
+  <!-- Open Graph / Social sharing -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Fresco d.o.o. – Svježe i spremno za upotrebu" />
+  <meta property="og:description" content="Svježi i termički obrađeni prehrambeni proizvodi. Pogledajte naš katalog." />
+  <meta property="og:image"       content="https://markizaz.github.io/fresco/Fresco-icon.png" />
+
+  <!-- Twitter card -->
+  <meta name="twitter:card"        content="summary" />
+  <meta name="twitter:title"       content="Fresco d.o.o." />
+  <meta name="twitter:description" content="Svježi i termički obrađeni prehrambeni proizvodi." />
+  <meta name="twitter:image"       content="https://markizaz.github.io/fresco/Fresco-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="Fresco-icon.png" />
   <style>
+
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -17,136 +36,293 @@
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      display: flex;
-      flex-direction: column;
-      background: #fff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0c0a07;
     }
 
     /* ── Header ── */
     header {
-      flex-shrink: 0;
-      height: 56px;
-      background: #fff;
-      border-bottom: 1px solid #e5e7eb;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: rgba(12, 10, 7, 0.72);
+      border-bottom: 1px solid rgba(232, 136, 58, 0.35);
       display: flex;
       align-items: center;
-      padding: 0 1.5rem;
-      gap: .75rem;
+      padding: 0 2rem;
+      gap: 1rem;
+      z-index: 10;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      flex-shrink: 0;
     }
 
     header img {
-      height: 38px;
-      width: auto;
+      height: 44px;
+      width: 44px;
+      object-fit: contain;
       display: block;
+      background: #fff;
+      border-radius: 50%;
+      padding: 4px;
+    }
+
+    .header-divider {
+      width: 1px;
+      height: 28px;
+      background: rgba(255,255,255,.12);
+      flex-shrink: 0;
     }
 
     .header-info {
       display: flex;
       flex-direction: column;
-      line-height: 1.25;
+      line-height: 1.3;
     }
 
     .header-info strong {
-      font-size: .95rem;
+      font-size: .9rem;
       font-weight: 700;
-      color: #1b1b1b;
-      letter-spacing: -.01em;
+      color: #f5f0e8;
+      letter-spacing: .03em;
     }
 
     .header-info span {
-      font-size: .72rem;
-      color: #6b7280;
+      font-size: .68rem;
+      color: rgba(255,255,255,.38);
+      letter-spacing: .04em;
+      text-transform: uppercase;
     }
 
     .header-contact {
       margin-left: auto;
-      font-size: .8rem;
-      color: #6b7280;
-      text-align: right;
-      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: .15rem;
+    }
+
+    .header-contact div {
+      font-size: .72rem;
+      color: rgba(255,255,255,.35);
+      letter-spacing: .03em;
     }
 
     .header-contact a {
-      color: #2d6a4f;
+      color: #e8883a;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .02em;
+      transition: color .15s;
     }
 
-    /* ── PDF ── */
-    .pdf-wrap {
-      flex: 1;
-      overflow: hidden;
+    .header-contact a:hover {
+      color: #f0a060;
     }
 
-    .pdf-wrap embed {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    /* Mobile fallback */
-    .fallback {
-      display: none;
+    /* ── PDF canvas container ── */
+    #pdf-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow-y: scroll;
+      padding-top: 70px;
+      display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      height: 100%;
-      text-align: center;
-      padding: 2rem;
-      color: #6b7280;
+      scrollbar-width: none;
     }
 
-    .fallback a {
-      display: inline-block;
-      padding: .6rem 1.4rem;
-      background: #2d6a4f;
-      color: #fff;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: .9rem;
-      font-weight: 500;
+    #pdf-container canvas {
+      display: block;
+      width: 100% !important;
+      height: auto !important;
+      flex-shrink: 0;
+    }
+
+    /* ── Page counter ── */
+    #page-counter {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: rgba(12, 10, 7, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.1);
+      color: rgba(255,255,255,.7);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      padding: .35rem .75rem;
+      border-radius: 99px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+
+    #page-counter.visible {
+      opacity: 1;
+    }
+
+    /* ── Progress bar ── */
+    #progress-bar {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: #e8883a;
+      z-index: 20;
+      transition: width .2s ease, opacity .5s ease;
+      pointer-events: none;
+    }
+
+    #pdf-loading {
+      color: rgba(255,255,255,.3);
+      font-size: .88rem;
+      margin-top: calc(50vh - 70px);
+      text-align: center;
+      letter-spacing: .05em;
+    }
+
+    /* ── Scrollbar ── */
+    #pdf-container::-webkit-scrollbar {
+      display: none;
     }
 
     @media (max-width: 600px) {
+      header { padding: 0 1rem; }
       .header-contact { display: none; }
+      #page-counter { bottom: 1rem; right: 1rem; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="logo.png" alt="Fresco logo" />
+    <div class="header-logo">
+      <img src="Fresco-icon.png" alt="Fresco logo" />
+    </div>
+    <div class="header-divider"></div>
     <div class="header-info">
       <strong>FRESCO d.o.o.</strong>
       <span>Svježe i spremno za upotrebu</span>
     </div>
     <div class="header-contact">
-      <div>Savica I. 139, 10 000 Zagreb &nbsp;·&nbsp; OIB: 18311048687</div>
-      <div><a href="tel:+385976440460">+385 97 6440 460</a></div>
+      <div>Savica I. 139, 10 000 Zagreb</div>
+      <a href="tel:+385976440460">+385 97 6440 460</a>
     </div>
   </header>
 
-  <div class="pdf-wrap" id="pdfWrap">
-    <embed
-      id="pdfEmbed"
-      src="document.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH"
-      type="application/pdf"
-    />
-    <div class="fallback" id="fallback">
-      <p>Vaš uređaj ne podržava prikaz PDF-a u pregledniku.</p>
-      <a href="document.pdf" download>Preuzmi dokument</a>
-    </div>
+  <div id="progress-bar"></div>
+  <div id="page-counter"></div>
+
+  <div id="pdf-container">
+    <p id="pdf-loading">Učitavanje dokumenta…</p>
   </div>
 
-  <script>
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if (isMobile) {
-      document.getElementById('pdfEmbed').style.display = 'none';
-      document.getElementById('fallback').style.display = 'flex';
+  <script type="module">
+    import * as pdfjsLib from './pdfjs/build/pdf.mjs';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = './pdfjs/build/pdf.worker.mjs';
+
+    (async () => {
+    const container   = document.getElementById('pdf-container');
+    const loading     = document.getElementById('pdf-loading');
+    const progressBar = document.getElementById('progress-bar');
+    const pageCounter = document.getElementById('page-counter');
+
+    // Load PDF with download progress
+    let pdf;
+    try {
+      pdf = await pdfjsLib.getDocument({
+        url: 'document.pdf',
+        onProgress: ({ loaded, total }) => {
+          if (total) progressBar.style.width = (loaded / total * 100) + '%';
+        }
+      }).promise;
+    } catch {
+      loading.textContent = 'Greška pri učitavanju dokumenta.';
+      progressBar.style.opacity = '0';
+      return;
     }
+
+    progressBar.style.width = '100%';
+    setTimeout(() => { progressBar.style.opacity = '0'; }, 400);
+    loading.remove();
+
+    const total     = pdf.numPages;
+    const dpr       = window.devicePixelRatio || 1;
+    const pageWidth = window.innerWidth * dpr;
+    const pages     = [];
+
+    // First pass: create all canvases with correct dimensions (fast – no rendering yet)
+    for (let i = 1; i <= total; i++) {
+      const page         = await pdf.getPage(i);
+      const baseViewport = page.getViewport({ scale: 1 });
+      const scale        = pageWidth / baseViewport.width;
+      const viewport     = page.getViewport({ scale });
+
+      const canvas         = document.createElement('canvas');
+      canvas.width         = viewport.width;
+      canvas.height        = viewport.height;
+      canvas.style.width   = (viewport.width  / dpr) + 'px';
+      canvas.style.height  = (viewport.height / dpr) + 'px';
+      canvas.dataset.index = i - 1;
+      canvas.dataset.page  = i;
+      container.appendChild(canvas);
+
+      pages.push({ canvas, page, viewport, rendered: false });
+    }
+
+    // Render a single page
+    const renderPage = async (entry) => {
+      if (entry.rendered) return;
+      entry.rendered = true;
+      await entry.page.render({
+        canvasContext: entry.canvas.getContext('2d'),
+        viewport: entry.viewport
+      }).promise;
+    };
+
+    // Render first 2 pages immediately
+    for (let i = 0; i < Math.min(2, pages.length); i++) renderPage(pages[i]);
+
+    // Lazy-render as pages approach viewport; also update page counter
+    const lazyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          renderPage(pages[+e.target.dataset.index]);
+          lazyObserver.unobserve(e.target);
+        }
+      });
+    }, { root: container, rootMargin: '150% 0px' });
+
+    // Page counter — track which page is most visible
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          pageCounter.textContent = `${e.target.dataset.page} / ${total}`;
+          pageCounter.classList.add('visible');
+        }
+      });
+    }, { root: container, threshold: 0.5 });
+
+    pages.forEach(({ canvas }, i) => {
+      if (i >= 2) lazyObserver.observe(canvas);
+      counterObserver.observe(canvas);
+    });
+    })();
   </script>
 
 </body>
