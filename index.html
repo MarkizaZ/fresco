@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brza priprema. Konzistentna kvaliteta.</title>
+  <title>Fresco d.o.o. – Svježe i spremno za upotrebu</title>
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -11,346 +11,141 @@
       padding: 0;
     }
 
-    :root {
-      --bg: #f5f4f0;
-      --surface: #ffffff;
-      --accent: #2d6a4f;
-      --accent-light: #40916c;
-      --accent-subtle: #d8f3dc;
-      --text: #1b1b1b;
-      --muted: #6b7280;
-      --border: #e5e7eb;
-      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
-    }
-
     html, body {
       height: 100%;
+      overflow: hidden;
     }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      background: #fff;
     }
 
     /* ── Header ── */
     header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      height: 64px;
+      flex-shrink: 0;
+      height: 56px;
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      box-shadow: 0 1px 4px rgba(0,0,0,.06);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-      font-weight: 700;
-      font-size: 1.15rem;
-      letter-spacing: -.01em;
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .logo-icon {
-      width: 32px;
-      height: 32px;
-      background: var(--accent);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo-icon svg {
-      width: 18px;
-      height: 18px;
-      fill: #fff;
-    }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
+      padding: 0 1.5rem;
       gap: .75rem;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      padding: .5rem 1.1rem;
-      border-radius: 8px;
-      font-size: .875rem;
-      font-weight: 500;
-      cursor: pointer;
+    header img {
+      height: 38px;
+      width: auto;
+      display: block;
+    }
+
+    .header-info {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+    }
+
+    .header-info strong {
+      font-size: .95rem;
+      font-weight: 700;
+      color: #1b1b1b;
+      letter-spacing: -.01em;
+    }
+
+    .header-info span {
+      font-size: .72rem;
+      color: #6b7280;
+    }
+
+    .header-contact {
+      margin-left: auto;
+      font-size: .8rem;
+      color: #6b7280;
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    .header-contact a {
+      color: #2d6a4f;
       text-decoration: none;
-      transition: background .15s, color .15s, box-shadow .15s;
-      border: none;
+      font-weight: 500;
     }
 
-    .btn-outline {
-      background: transparent;
-      border: 1.5px solid var(--border);
-      color: var(--muted);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--accent-light);
-      color: var(--accent);
-      background: var(--accent-subtle);
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-light);
-      box-shadow: 0 2px 8px rgba(45,106,79,.25);
-    }
-
-    .btn svg {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
-    }
-
-    /* ── Hero ── */
-    .hero {
-      padding: 3rem 2rem 2rem;
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: .35rem;
-      padding: .3rem .85rem;
-      background: var(--accent-subtle);
-      color: var(--accent);
-      border-radius: 999px;
-      font-size: .78rem;
-      font-weight: 600;
-      letter-spacing: .03em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 800;
-      line-height: 1.2;
-      letter-spacing: -.02em;
-      color: var(--text);
-      margin-bottom: .75rem;
-    }
-
-    .hero p {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    /* ── Viewer container ── */
-    .viewer-wrap {
+    /* ── PDF ── */
+    .pdf-wrap {
       flex: 1;
-      padding: 0 1.5rem 3rem;
-      max-width: 1100px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    .viewer-card {
-      background: var(--surface);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
       overflow: hidden;
     }
 
-    .viewer-toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: .75rem 1.25rem;
-      border-bottom: 1px solid var(--border);
-      background: #fafafa;
-    }
-
-    .viewer-title {
-      font-size: .85rem;
-      font-weight: 500;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-    }
-
-    .viewer-title svg {
-      width: 16px;
-      height: 16px;
-      color: #ef4444;
-      flex-shrink: 0;
-    }
-
-    .pdf-embed {
+    .pdf-wrap embed {
       display: block;
       width: 100%;
-      height: 80vh;
-      min-height: 500px;
+      height: 100%;
       border: none;
     }
 
-    /* ── Fallback ── */
+    /* Mobile fallback */
     .fallback {
       display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 1.25rem;
-      padding: 4rem 2rem;
+      gap: 1rem;
+      height: 100%;
       text-align: center;
+      padding: 2rem;
+      color: #6b7280;
     }
 
-    .fallback svg {
-      width: 56px;
-      height: 56px;
-      color: var(--muted);
-      opacity: .5;
+    .fallback a {
+      display: inline-block;
+      padding: .6rem 1.4rem;
+      background: #2d6a4f;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
     }
 
-    .fallback p {
-      color: var(--muted);
-      font-size: .95rem;
-      max-width: 320px;
-      line-height: 1.6;
-    }
-
-    /* ── Footer ── */
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      color: var(--muted);
-      font-size: .8rem;
-      border-top: 1px solid var(--border);
-      background: var(--surface);
-    }
-
-    /* ── Responsive ── */
     @media (max-width: 600px) {
-      header { padding: 0 1rem; }
-      .hero { padding: 2rem 1rem 1.5rem; }
-      .viewer-wrap { padding: 0 .75rem 2rem; }
-      .pdf-embed { height: 70vh; }
-      .logo span { display: none; }
+      .header-contact { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
   <header>
-    <a class="logo" href="#">
-      <span class="logo-icon">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/>
-        </svg>
-      </span>
-      <span>Fresco</span>
-    </a>
-    <div class="header-actions">
-      <a class="btn btn-outline" href="document.pdf" target="_blank">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-          <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-        </svg>
-        Otvori
-      </a>
-      <a class="btn btn-primary" href="document.pdf" download>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-          <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
-        </svg>
-        Preuzmi PDF
-      </a>
+    <img src="logo.png" alt="Fresco logo" />
+    <div class="header-info">
+      <strong>FRESCO d.o.o.</strong>
+      <span>Svježe i spremno za upotrebu</span>
+    </div>
+    <div class="header-contact">
+      <div>Savica I. 139, 10 000 Zagreb &nbsp;·&nbsp; OIB: 18311048687</div>
+      <div><a href="tel:+385976440460">+385 97 6440 460</a></div>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="badge">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
-        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-      </svg>
-      Dokument
-    </div>
-    <h1>Brza priprema.<br>Konzistentna kvaliteta.</h1>
-    <p>Pregledajte dokument ispod ili ga preuzmite za korištenje offline.</p>
-  </section>
-
-  <!-- PDF Viewer -->
-  <div class="viewer-wrap">
-    <div class="viewer-card">
-      <div class="viewer-toolbar">
-        <div class="viewer-title">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v3zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm10 5.5h1v-3h-1v3z"/>
-          </svg>
-          document.pdf
-        </div>
-        <a class="btn btn-outline" style="padding:.35rem .8rem;font-size:.8rem;" href="document.pdf" target="_blank">
-          Cijeli zaslon ↗
-        </a>
-      </div>
-
-      <!-- Native embed — works in Chrome, Edge, Firefox, Safari -->
-      <embed
-        id="pdfEmbed"
-        class="pdf-embed"
-        src="document.pdf#toolbar=1&navpanes=0"
-        type="application/pdf"
-      />
-
-      <!-- Fallback for browsers/devices without native PDF support -->
-      <div class="fallback" id="fallback">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/>
-        </svg>
-        <p>Vaš preglednik ne podržava prikaz PDF-a direktno. Preuzmite datoteku kako biste je pregledali.</p>
-        <a class="btn btn-primary" href="document.pdf" download>Preuzmi PDF</a>
-      </div>
+  <div class="pdf-wrap" id="pdfWrap">
+    <embed
+      id="pdfEmbed"
+      src="document.pdf#toolbar=0&navpanes=0&scrollbar=1&view=FitH"
+      type="application/pdf"
+    />
+    <div class="fallback" id="fallback">
+      <p>Vaš uređaj ne podržava prikaz PDF-a u pregledniku.</p>
+      <a href="document.pdf" download>Preuzmi dokument</a>
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    &copy; <script>document.write(new Date().getFullYear())</script> Fresco &mdash; Sva prava pridržana.
-  </footer>
-
   <script>
-    // Detect if <embed> failed to load the PDF and show fallback
-    const embed = document.getElementById('pdfEmbed');
-    const fallback = document.getElementById('fallback');
-
-    // Mobile devices typically can't embed PDFs natively
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     if (isMobile) {
-      embed.style.display = 'none';
-      fallback.style.display = 'flex';
+      document.getElementById('pdfEmbed').style.display = 'none';
+      document.getElementById('fallback').style.display = 'flex';
     }
   </script>
 
