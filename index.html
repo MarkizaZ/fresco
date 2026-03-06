@@ -232,6 +232,33 @@
     <p id="pdf-loading">Učitavanje dokumenta…</p>
   </div>
 
+  <!-- Fallback for browsers that don't support ES modules (old Android/iOS) -->
+  <script nomodule>
+    (function() {
+      var loading = document.getElementById('pdf-loading');
+      if (loading) {
+        loading.innerHTML =
+          'Vaš preglednik ne podržava prikaz PDF-a.<br>' +
+          '<a href="document.pdf" style="color:#e8883a;font-weight:700;font-size:1.1rem;text-decoration:none;" download>Preuzmi katalog (PDF)</a>';
+        loading.style.lineHeight = '2';
+      }
+    })();
+  </script>
+
+  <!-- IntersectionObserver polyfill for slightly older browsers that support modules -->
+  <script>
+    if (!('IntersectionObserver' in window)) {
+      window.IntersectionObserver = function(cb) {
+        return {
+          observe: function(el) {
+            setTimeout(function() { cb([{ isIntersecting: true, target: el }]); }, 0);
+          },
+          unobserve: function() {}
+        };
+      };
+    }
+  </script>
+
   <script type="module">
     import * as pdfjsLib from './pdfjs/build/pdf.mjs';
     pdfjsLib.GlobalWorkerOptions.workerSrc = './pdfjs/build/pdf.worker.mjs';
